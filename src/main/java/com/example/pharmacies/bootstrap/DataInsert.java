@@ -19,7 +19,7 @@ public class DataInsert {
 
     @PostConstruct
     public void init() throws FileNotFoundException {
-        BufferedReader br = new BufferedReader(new FileReader(""));
+      //  BufferedReader br = new BufferedReader(new FileReader(""));
 
 //test;
       // String name, String location, String workingTime, Double lon, Double lat, String phoneNumber, String city, String website
