@@ -23,14 +23,6 @@ public class MainController {
         return "homepage";
     }
 
-    @GetMapping("/login")
-    public String getLoginPage(){
-        return "login";
-    }
-
-    @GetMapping("/register")
-    public String getRegisterPage(){ return "register"; }
-
     @GetMapping("/add")
     public String getAddPharmacy(){ return "addpharmacy"; }
 
