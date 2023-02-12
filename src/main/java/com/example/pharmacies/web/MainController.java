@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("/home")
+@RequestMapping({"/home", "/"})
 public class MainController {
     private final PharmacyService pharmacyService;
 
