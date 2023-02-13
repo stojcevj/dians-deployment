@@ -10,8 +10,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/logout")
 public class LogoutController {
     @GetMapping
-    public String logout(HttpSession httpSession) {
-        httpSession.setAttribute("user",null);
-        return "redirect:/login";
+    public String logout() {
+        return "redirect:/home";
     }
 }

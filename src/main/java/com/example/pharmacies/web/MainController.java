@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,17 +20,25 @@ public class MainController {
     }
 
     @GetMapping
-    public String getMainPage(){
-        return "homepage";
+    public String getMainPage(Model model){
+        model.addAttribute("bodyContent", "homepage");
+        model.addAttribute("title", "PharMap");
+        return "master";
     }
 
     @GetMapping("/add")
-    public String getAddPharmacy(){ return "addpharmacy"; }
+    public String getAddPharmacy(Model model){
+        model.addAttribute("bodyContent", "addpharmacy");
+        model.addAttribute("title", "Add");
+        return "master";
+    }
 
     @GetMapping("/search")
     public String getSearchPharmacy(Model model){
         model.addAttribute("list", pharmacyService.listAllPharmacies());
-        return "search";
+        model.addAttribute("bodyContent", "search");
+        model.addAttribute("title", "Search");
+        return "master";
     }
     @PostMapping("/search")
     public String postSearchPharmacy(Model model, @RequestParam String city)
@@ -38,7 +47,9 @@ public class MainController {
             model.addAttribute("list",pharmacyService.listAllPharmacies());
         else
         model.addAttribute("list",pharmacyService.findByContains(city));
-        return "search";
+        model.addAttribute("bodyContent", "search");
+        model.addAttribute("title", "Search");
+        return "master";
     }
 
     @PostMapping("/add")
@@ -51,23 +62,15 @@ public class MainController {
                               @RequestParam String phoneNumber,
                               @RequestParam String city,
                               @RequestParam String website){
-        System.out.println("***"
-                +name+";"
-                +location+";"
-                +workingTime+";"
-                +lon+";"
-                +lat+";"
-                +phoneNumber+";"
-                +city+";"
-                +website+";"
-                +"***");
-        pharmacyService.savePharmacy(new Pharmacy(name,location,workingTime,lat,lon,phoneNumber,city,website));
-        return "search";
+        pharmacyService.savePharmacy(new Pharmacy(name, location, workingTime, lat, lon, phoneNumber, city, website));
+        return "redirect:/search";
     }
     @GetMapping("/getClosestPharmacy")
     public String userLocation(Model model)
     {
         model.addAttribute("list",pharmacyService.listAllPharmacies());
-        return "locateClosest";
+        model.addAttribute("bodyContent", "locateClosest");
+        model.addAttribute("title", "LocateClosest");
+        return "master";
     }
 }
