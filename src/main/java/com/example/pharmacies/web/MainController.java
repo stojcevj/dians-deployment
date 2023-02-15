@@ -41,7 +41,7 @@ public class MainController {
         return "master";
     }
     @PostMapping("/search")
-    public String postSearchPharmacy(Model model, @RequestParam String city)
+    public String postSearchPharmacy(Model model, @RequestParam(required = false) String city)
     {
         if(city==null)
             model.addAttribute("list",pharmacyService.listAllPharmacies());

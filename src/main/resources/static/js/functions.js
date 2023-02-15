@@ -80,3 +80,11 @@ const displayPharmaciesDetails = () => {
             .openPopup();
     }
 }
+
+const addMarker = (e) =>{
+    deletePharmaciesDetails();
+    setMap();
+    let newMarker = new L.marker(e.latlng).addTo(map);
+    document.getElementById("lat").value = newMarker._latlng.lat;
+    document.getElementById("lon").value = newMarker._latlng.lng;
+}
